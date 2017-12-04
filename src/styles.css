@@ -1,0 +1,324 @@
+@import url("reset.css");
+
+/* 5e books color references:
+ * http://rpg.brainclouds.net/2014/11/24/the-fonts-of-dd-5th-edition/
+ * http://rpg.brainclouds.net/2014/11/24/the-fonts-of-dd-5th-edition/
+ */
+
+/* * * * * * * * * * * * * *
+ * Fonts                   *
+ * * * * * * * * * * * * * */
+
+/* Mrs Eaves SmallCaps */
+@font-face {
+    font-family: 
+        SmallCaps;
+    src: 
+        url(fonts/mrseavessmallcaps_regular.ttf)
+        format('truetype');
+}
+
+
+/* Scala Sans */
+@font-face {
+    font-family: 
+        ScalaSans;
+    src: 
+        url(fonts/scalasans.ttf)
+        format('truetype');
+}
+
+/* Bold version */
+@font-face {
+    font-family:
+        ScalaSans;
+    src:
+        url(fonts/scalasans-bold.ttf)
+        format('truetype');
+    font-weight: 
+        bold;
+}
+
+/* Scala Sans Smallcaps */
+@font-face {
+    font-family: 
+        ScalaSansCaps;
+    src: 
+        url(fonts/scalasans-caps.ttf)
+        format('truetype');
+}
+
+/* Bold version */
+@font-face {
+    font-family:
+        ScalaSansCaps;
+    src:
+        url(fonts/scalasans-caps-bold.ttf)
+        format('truetype');
+    font-weight: 
+        bold;
+}
+
+/* (free) Replacement for Bookmania font */
+@font-face {
+    font-family: 
+        BookmaniaSub;
+    src:
+        url(fonts/texgyrebonum-regular.otf)
+        format('opentype');
+}
+
+/* Bold version */
+@font-face {
+    font-family: 
+        BookmaniaSub;
+    src:
+        url(fonts/texgyrebonum-bold.otf)
+        format('opentype');
+    font-weight:
+        bold;
+}
+
+/* italic version */
+@font-face {
+    font-family: 
+        BookmaniaSub;
+    src:
+        url(fonts/texgyrebonum-italic.otf)
+        format('opentype');
+    font-style:
+        italic;
+}
+
+/* Bold italic */
+@font-face {
+    font-family: 
+        BookmaniaSub;
+    src:
+        url(fonts/texgyrebonum-italic.otf)
+        format('opentype');
+    font-weight:
+        bold;
+    font-style:
+        italic;
+}
+
+
+
+body {
+    margin: 3em;
+    font-family: BookmaniaSub;
+    font-size: 10pt;
+}
+
+
+/* * * * * * * * * * * * * *
+ * Headings                *
+ * * * * * * * * * * * * * */
+
+h1, h2, h3, h4, h5, h6 {
+    color: #58170D;
+    font-family: SmallCaps, serif;
+    margin-top: .6em;
+    margin-bottom: .1em;
+}
+
+/* Title headings. Mrs Eaves SMall Caps, 24 pt. Color #58170D */
+h1 {
+    font-size: 24pt;
+}
+
+/* Tier 1 section headings */
+h2 {
+    font-size: 20pt;
+}
+
+/* Tier 2 section headings */
+h3 {
+    font-size: 15pt;
+    border-bottom: solid #b5b353;
+    border-bottom-width: 2px;
+}
+
+/* Tier 3 section headings */
+h4 {
+    font-size: 12pt;
+}
+
+/* Todo: h5 + h6? */
+
+.title {
+    font-size: 30pt;
+    margin-bottom: .5em;
+    border-bottom: solid #b5b353;
+    border-bottom-width: 3px;
+}
+
+
+/* * * * * * * * * * * * * *
+ * Basic text              *
+ * * * * * * * * * * * * * */
+p {
+    font-family: BookmaniaSub, serif;
+    font-size: 10pt;
+}
+
+em {
+    font-style: italic;
+}
+
+strong {
+    font-weight: bold;
+}
+
+
+body {
+    background-image: url('/images/paper-bg.jpg');
+    background-repeat: repeat;
+}
+
+/* * * * * * * * * * * * * *
+ * Links                   *
+ * * * * * * * * * * * * * */
+
+
+a {
+   color: #58170D;
+    text-decoration: none;
+/*    background-color: #d0e5b0;*/
+/*    font-style: italic;*/
+    font-weight: bold; 
+}
+
+
+
+
+
+/* * * * * * * * * * * * * *
+ * Tables                  *
+ * * * * * * * * * * * * * */
+
+.table h1 {
+    font-family: ScalaSansCaps, sans-serif;
+    color: black;
+}
+
+/* Title of the table */
+.table h1 {
+    font-size: 11pt;
+    font-weight: bold;
+    text-align: left;
+    padding-top: .5em;
+}
+
+.table table {
+    margin-left: .5em;
+    
+}
+
+.table th, .table td {
+    font-family: ScalaSans, sans-serif;
+    font-size: 8.5pt;
+    padding: .25em;
+}
+
+.table th {
+    font-family: ScalaSansCaps, sans-serif;
+    font-weight: bold;
+    text-align: left;
+}
+
+.striped tr:nth-child(even) {
+   background-color: #d0e5b0;
+}
+
+.attribute-table table {
+    font-family: BookmaniaSub;
+    font-size: 11pt;
+    text-align: center;
+}
+
+.attribute-table th, .attribute-table td {
+    padding: .2em;
+}
+
+.attribute-table th {
+    font-weight: bold;
+}
+
+/* Stat block styles 
+.stat-block h1 {
+    font-family: SmallCaps, serif;
+}
+*/
+
+
+.bttn {
+    margin-top: 10px;
+    background: #e8e497;
+    background-image: -webkit-linear-gradient(top, #e8e497, #f0e7aa);
+    background-image: -moz-linear-gradient(top, #e8e497, #f0e7aa);
+    background-image: -ms-linear-gradient(top, #e8e497, #f0e7aa);
+    background-image: -o-linear-gradient(top, #e8e497, #f0e7aa);
+    background-image: linear-gradient(to bottom, #e8e497, #f0e7aa);
+    -webkit-border-radius: 20;
+    -moz-border-radius: 20;
+    border-radius: 10px;
+    text-shadow: 2px 1px 6px #666666;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Arial;
+    color: #58170D;
+    font-size: 12px;
+    padding: 3px 6px 3px 6px;
+    border: solid #baaf93 3px;
+    text-decoration: none;
+}
+
+.bttn:hover {
+  background: #e6e3a8;
+  background-image: -webkit-linear-gradient(top, #e6e3a8, #d6ce87);
+  background-image: -moz-linear-gradient(top, #e6e3a8, #d6ce87);
+  background-image: -ms-linear-gradient(top, #e6e3a8, #d6ce87);
+  background-image: -o-linear-gradient(top, #e6e3a8, #d6ce87);
+  background-image: linear-gradient(to bottom, #e6e3a8, #d6ce87);
+  text-decoration: none;
+}
+
+.navigation {
+    margin-bottom: 2em;
+}
+
+.nav-tab {
+    margin-top: 10px;
+    background: #e8e497;
+    background-image: -webkit-linear-gradient(top, #e8e497, #f0e7aa);
+    background-image: -moz-linear-gradient(top, #e8e497, #f0e7aa);
+    background-image: -ms-linear-gradient(top, #e8e497, #f0e7aa);
+    background-image: -o-linear-gradient(top, #e8e497, #f0e7aa);
+    background-image: linear-gradient(to bottom, #e8e497, #f0e7aa);
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    text-shadow: 2px 1px 6px #666666;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: Arial;
+    color: #58170D;
+    font-size: 20px;
+    padding: 5px 8px 5px 8px;
+    border: solid #baaf93 4px;
+    text-decoration: none;
+}
+
+.nav-tab:hover {
+  background: #e6e3a8;
+  background-image: -webkit-linear-gradient(top, #e6e3a8, #d6ce87);
+  background-image: -moz-linear-gradient(top, #e6e3a8, #d6ce87);
+  background-image: -ms-linear-gradient(top, #e6e3a8, #d6ce87);
+  background-image: -o-linear-gradient(top, #e6e3a8, #d6ce87);
+  background-image: linear-gradient(to bottom, #e6e3a8, #d6ce87);
+  text-decoration: none;
+}
