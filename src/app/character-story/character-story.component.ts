@@ -10,16 +10,16 @@ import { CharacterStoryService } from '../character-story.service';
 export class CharacterStoryComponent implements OnInit {
   header = 'Character Story Generator';
 
-  characterStory: CharacterStory;
+  story: CharacterStory;
 
   constructor(private characterStoryService: CharacterStoryService) { }
 
   ngOnInit() {
-    this.getRandomCharacterStory();
+    this.getRandomStory();
   }
 
-  getRandomCharacterStory(): void {
-    this.characterStory = this.characterStoryService.getRandomCharacterStory();
+  getRandomStory(): void {
+    this.story = this.characterStoryService.getRandomCharacterStory();
   }
 
 }

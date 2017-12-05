@@ -1,4 +1,4 @@
-export const CHAR_BACKGROUND = [
+export const CHAR_BACKGROUNDS = [
     'Acolyte',
     'Charlatan',
     'Criminal',

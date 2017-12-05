@@ -1,5 +1,5 @@
 <h2>{{header}}</h2>
-<div *ngIf="characterStory">
+<div *ngIf="story">
     <table class="table striped">
         <tr>
           <th><h1>Story Element</h1></th>
@@ -7,18 +7,26 @@
         </tr>
         <tr>
           <td>Race</td>
-          <td>{{characterStory.race}}</td>
+          <td>{{story.race}}</td>
         </tr>
         <tr>
           <td>Class</td>
-          <td>{{characterStory.class}}</td>
+          <td>{{story.class}}</td>
         </tr>
         <tr>
           <td>Background</td>
-          <td>{{characterStory.background}}</td>
+          <td>{{story.background}}</td>
+        </tr>
+        <tr>
+          <td>Parents</td>
+          <td>{{story.parentInfo}}</td>
+        </tr>
+        <tr>
+          <td>Birthplace</td>
+          <td>{{story.birthplace}}</td>
         </tr>
       </table>
 </div>
 <div>
-  <button class="bttn" (click)="getRandomCharacterStory()">Start Life Over</button>
+  <button class="bttn" (click)="getRandomStory()">Start Life Over</button>
 </div>
