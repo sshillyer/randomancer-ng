@@ -1,0 +1,21 @@
+export const CHAR_RACES: string[] = [
+    'Aarakocra',
+    'Dwarf, Hill',
+    'Dwarf, Mountain',
+    'Elf, High',
+    'Elf, Wood',
+    'Elf, Drow',
+    'Genasi, Earth',
+    'Genasi, Air',
+    'Genasi, Fire',
+    'Genasi, Water',
+    'Goliath', 'Halfling',
+    'Human',
+    'Dragonborn',
+    'Gnome, Forest',
+    'Gnome, Rock',
+    'Gnome, Deep',
+    'Half-Elf',
+    'Half-Orc',
+    'Tiefling'
+];

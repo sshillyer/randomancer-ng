@@ -8,7 +8,7 @@ import { CharacterStoryService } from '../character-story.service';
   styleUrls: ['./character-story.component.css']
 })
 export class CharacterStoryComponent implements OnInit {
-  header = 'Character Story Genreator';
+  header = 'Character Story Generator';
 
   characterStory: CharacterStory;
 
