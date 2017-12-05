@@ -1,18 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { VillainComponent } from './villain/villain.component';
+import { CharacterStoryComponent } from './character-story/character-story.component';
+import { CharacterStoryService } from './character-story.service';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VillainComponent,
+    CharacterStoryComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      { path: 'villain', component: VillainComponent },
+    ]),
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [ CharacterStoryService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,20 @@
+<h2>{{header}}</h2>
+<div *ngIf="characterStory">
+    <table class="table striped">
+        <tr>
+          <th><h1>Story Element</h1></th>
+          <th><h1>Details</h1></th>
+        </tr>
+        <tr>
+          <td>Race</td>
+          <td>{{characterStory.race}}</td>
+        </tr>
+        <tr>
+          <td>Class</td>
+          <td>{{characterStory.class}}</td>
+        </tr>
+        <!-- <tr *ngForEach>
+      
+        </tr> -->
+      </table>
+</div>
