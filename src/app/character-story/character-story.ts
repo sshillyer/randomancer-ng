@@ -5,4 +5,5 @@ export class CharacterStory {
     knowParents: boolean;
     parentInfo: string;
     birthplace: string;
+    siblings: string[];
 }

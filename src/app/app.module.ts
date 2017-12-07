@@ -7,6 +7,8 @@ import { VillainComponent } from './villain/villain.component';
 import { CharacterStoryComponent } from './character-story/character-story.component';
 import { CharacterStoryService } from './character-story.service';
 import { BirthplaceService } from './birthplace.service';
+import { SiblingService } from './sibling.service';
+import { SupplementalTableService } from './supplemental-table.service';
 import { AppRoutingModule } from './/app-routing.module';
 
 
@@ -23,7 +25,7 @@ import { AppRoutingModule } from './/app-routing.module';
     ]),
     AppRoutingModule
   ],
-  providers: [ CharacterStoryService, BirthplaceService ],
+  providers: [ CharacterStoryService, BirthplaceService, SiblingService, SupplementalTableService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

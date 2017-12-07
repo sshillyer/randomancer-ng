@@ -25,8 +25,14 @@
           <td>Birthplace</td>
           <td>{{story.birthplace}}</td>
         </tr>
+        <tr 
+          *ngFor="let sibling of story.siblings; let i = index" [attr.data-index]="i">
+          <td>Sibling {{i + 1}}</td>
+          <td>{{sibling}}</td>
+        </tr>
       </table>
 </div>
 <div>
   <button class="bttn" (click)="getRandomStory()">Start Life Over</button>
+  <button class="bttn" (click)="makeLifeHarder()">Make Life Harder</button>
 </div>
