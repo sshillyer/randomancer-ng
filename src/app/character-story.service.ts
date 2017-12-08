@@ -19,10 +19,11 @@ export class CharacterStoryService {
 
   getRandomCharacterStory(): CharacterStory {
     const race = this.getRandomRace();
+    const knowParents = this.getRandomKnowParents();
+    const parentInfo = this.getRandomParents(race, knowParents);
+
     const charClass = this.getRandomClass();
     const background = this.getRandomBackground();
-    const knowParents = this.getRandomKnowParents();
-    const parentInfo = this.getRandomParentInfo(knowParents);
     const birthplace = this.getRandomBirthplace();
     const siblings = this.getRandomSiblings();
 
@@ -96,6 +97,45 @@ export class CharacterStoryService {
     }
     return this.siblingService.getRandomSiblings(numberOfSiblings);
 
+  }
+
+  getRandomParents(race: string, knowParents: boolean): string {
+    if (race === 'Half-Elf') {
+      const roll = this.supplementalTableService.roll(1, 8);
+      if (roll <= 5) {
+        return 'One parent was an elfand the other was a human.';
+      } else if (roll <= 6) {
+        return 'One parent was an elf and the other was a half-elf.';
+      } else if (roll <= 7) {
+        return 'One parent was a human and the other was a halfelf.';
+      } else {
+        return 'Both parents were half—elves.';
+      }
+    } else if (race === 'Half-Orc') {
+      const roll = this.supplementalTableService.roll(1, 8);
+      if (roll <= 5) {
+        return 'One parent was an orc and the other was a human.';
+      } else if (roll <= 6) {
+        return 'One parent was an ore and the other was a halforc.';
+      } else if (roll <= 7) {
+        return 'One parent was a human and the other was a halforc.';
+      } else {
+        return 'Both parents were half-orcs.';
+      }
+    } else if (race === 'Tiefling') {
+      const roll = this.supplementalTableService.roll(1, 8);
+      if (roll <= 5) {
+        return 'Both parents were humans, their infernal heritage dormant until you came along.';
+      } else if (roll <= 6) {
+        return 'One parent was a tiefling and the other was a human.';
+      } else if (roll <= 7) {
+        return 'One parent was a tiefling and the other was a devil.';
+      } else {
+        return 'One parent was a human and the other was a devil.';
+      }
+    } else {
+      return this.getRandomParentInfo(knowParents);
+    }
   }
 
 }
