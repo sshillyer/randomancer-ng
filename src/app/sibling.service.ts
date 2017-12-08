@@ -13,9 +13,10 @@ export class SiblingService {
     for (let i = 0; i < numberOfSiblings; i++) {
       const occupation = this.supplementalTableService.getRandomOccupation();
       const alignment = this.supplementalTableService.getRandomAlignment();
-      // const status = this.getRandomStatus();
-      // const relationship = this.getRandomRelationship();
-      const sibling = `A ${alignment} ${occupation}`;
+      const status = this.supplementalTableService.getRandomStatus();
+      const relationship = this.supplementalTableService.getRandomRelationship();
+      const birthOrder = this.supplementalTableService.getRandomBirthOrder();
+      const sibling = `${birthOrder}. A ${alignment} ${occupation}. ${status}. ${relationship} towards you.`;
       siblings[i] = sibling;
     }
     return siblings;

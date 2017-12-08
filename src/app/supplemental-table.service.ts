@@ -112,4 +112,45 @@ export class SupplementalTableService {
         return'Wizard';
       }
     }
+
+    getRandomStatus(): string {
+      const roll = this.roll(3, 6);
+      if (roll <= 3) {
+        return 'Dead (roll on the Cause of Death table)';
+      } else if (roll <= 5) {
+        return 'Missing or unknown';
+      } else if (roll <= 6) {
+        return 'Alive, but doing poorly due to injury, financial trouble, or relationship difficulties';
+      } else if (roll <= 12) {
+        return 'Alive and well';
+      } else if (roll <= 15) {
+        return 'Alive and quite successful';
+      } else if (roll <= 17) {
+        return 'Alive and infamous';
+      } else {
+        return 'Alive and famous';
+      }
+    }
+
+    getRandomRelationship(): string {
+      const roll = this.roll(3, 4);
+      if (roll <= 4) {
+        return 'Hostile';
+      } else if (roll <= 10) {
+        return 'Friendly';
+      } else {
+        return 'Indifferent';
+    }
+  }
+
+    getRandomBirthOrder(): string {
+      const roll = this.roll(2, 6);
+      if (roll <= 2) {
+        return 'Your twin, triplet, or quadruplet';
+      } else if (roll <= 7) {
+        return 'Older than you';
+      } else {
+        return 'Younger than you';
+      }
+    }
 }
