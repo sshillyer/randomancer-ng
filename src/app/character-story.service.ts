@@ -36,21 +36,31 @@ export class CharacterStoryService {
       absentParent = this.getRandomAbsentParent(absentParentRoll);
     }
 
+    const familyLifestyleRoll = this.supplementalTableService.roll(3, 6);
+    const familyLifestyle = this.getRandomFamilyLifestyle(familyLifestyleRoll);
+
+    const childhoodHomeRoll = this.supplementalTableService.roll(1, 100);
+    const childhoodHome = this.getChildhoodHome(childhoodHomeRoll, familyLifestyleRoll);
+
     const charClass = this.getRandomClass();
     const background = this.getRandomBackground();
     const birthplace = this.getRandomBirthplace();
     const siblings = this.getRandomSiblings();
+
+
 
     return {
       race: race,
       class: charClass,
       background: background,
       family: family,
+      familyLifestyle: familyLifestyle,
       absentParent: absentParent,
       knowParents: knowParents,
       parentInfo: parentInfo,
       birthplace: birthplace,
       siblings: siblings,
+      childhoodHome: childhoodHome,
     };
   }
 
@@ -93,6 +103,63 @@ export class CharacterStoryService {
       return 'Single mother or stepmother';
     } else {
       return 'Mother and father';
+    }
+  }
+
+  getChildhoodHome(roll: number, familyLifestyleRoll: number): string {
+    let rollWithMod = roll;
+    if (familyLifestyleRoll <= 3) {
+      rollWithMod -= 40;
+    } else if (familyLifestyleRoll <= 5) {
+      rollWithMod -= 20;
+    } else if (familyLifestyleRoll <= 8) {
+      rollWithMod -= 10;
+    } else if (familyLifestyleRoll <= 12) {
+      rollWithMod += 0;
+    } else if (familyLifestyleRoll <= 15) {
+      rollWithMod += 10;
+    } else if (familyLifestyleRoll <= 17) {
+      rollWithMod += 20;
+    } else {
+      rollWithMod += 40;
+    }
+
+    if (rollWithMod <= 0) {
+      return 'On the streets';
+    } else if (rollWithMod <= 20) {
+      return 'Rundown shack';
+    } else if (rollWithMod <= 30) {
+      return 'No permanent residence; you moved arounda lot';
+    } else if (rollWithMod <= 40) {
+      return 'Encampment or village in the wilderness';
+    } else if (rollWithMod <= 50) {
+      return 'Apartment in a rundown neighborhood';
+    } else if (rollWithMod <= 70) {
+      return 'Small house';
+    } else if (rollWithMod <= 90) {
+      return 'Large house';
+    } else if (rollWithMod <= 110) {
+      return 'Mansion';
+    } else {
+      return 'Palace or castle';
+    }
+  }
+
+  getRandomFamilyLifestyle(roll: number): string {
+    if (roll <= 3) {
+      return 'Wretched';
+    } else if (roll <= 5) {
+      return 'Squalid';
+    } else if (roll <= 8) {
+      return 'Poor';
+    } else if (roll <= 12) {
+      return 'Modest';
+    } else if (roll <= 15) {
+      return 'Comfortable';
+    } else if (roll <= 17) {
+      return 'Wealthy';
+    } else {
+      return 'Aristocratic';
     }
   }
 
