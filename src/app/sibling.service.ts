@@ -21,9 +21,4 @@ export class SiblingService {
     }
     return siblings;
   }
-
-  // getRandomOccupation(): string {
-
-  // }
-
 }

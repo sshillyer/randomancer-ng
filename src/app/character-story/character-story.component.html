@@ -18,8 +18,16 @@
           <td>{{story.background}}</td>
         </tr>
         <tr>
+          <td>Family</td>
+          <td>{{story.family}}</td>
+        </tr>
+        <tr>
           <td>Parents</td>
           <td>{{story.parentInfo}}</td>
+        </tr>
+        <tr *ngIf="story.absentParent">
+          <td>Absent Parent</td>
+          <td>{{story.absentParent}}</td>
         </tr>
         <tr>
           <td>Birthplace</td>

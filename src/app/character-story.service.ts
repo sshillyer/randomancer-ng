@@ -18,9 +18,23 @@ export class CharacterStoryService {
   ) { }
 
   getRandomCharacterStory(): CharacterStory {
-    const race = this.getRandomRace();
-    const knowParents = this.getRandomKnowParents();
-    const parentInfo = this.getRandomParents(race, knowParents);
+    const raceRoll = this.supplementalTableService.getRandomInt(0, CHAR_RACES.length - 1);
+    const race = this.getRandomRace(raceRoll);
+
+    const knowParentsRoll = this.supplementalTableService.getRandomInt(1, 100);
+    const knowParents = this.getRandomKnowParents(knowParentsRoll);
+
+    const familyRoll = this.supplementalTableService.getRandomInt(0, 100);
+    const family = this.getRandomFamily(familyRoll);
+
+    const halfbreedRoll = this.supplementalTableService.roll(1, 8);
+    const parentInfo = this.getRandomParents(halfbreedRoll, race, knowParents);
+
+    let absentParent = null;
+    if (familyRoll >= 36 && familyRoll <= 75) {
+      const absentParentRoll = this.supplementalTableService.roll(1, 4);
+      absentParent = this.getRandomAbsentParent(absentParentRoll);
+    }
 
     const charClass = this.getRandomClass();
     const background = this.getRandomBackground();
@@ -31,6 +45,8 @@ export class CharacterStoryService {
       race: race,
       class: charClass,
       background: background,
+      family: family,
+      absentParent: absentParent,
       knowParents: knowParents,
       parentInfo: parentInfo,
       birthplace: birthplace,
@@ -38,8 +54,7 @@ export class CharacterStoryService {
     };
   }
 
-  getRandomRace(): string {
-    const roll: number = this.supplementalTableService.getRandomInt(0, CHAR_RACES.length - 1);
+  getRandomRace(roll: number): string {
     return CHAR_RACES[roll];
   }
 
@@ -55,6 +70,38 @@ export class CharacterStoryService {
     return CHAR_BACKGROUNDS[Math.floor(Math.random() * CHAR_BACKGROUNDS.length)];
   }
 
+  getRandomFamily(roll: number): string {
+    if (roll <= 1) {
+      return 'None';
+    } else if (roll <= 2) {
+      return 'Institution, such as an asylum';
+    } else if (roll <= 3) {
+      return 'Temple';
+    } else if (roll <= 5) {
+      return 'Orphanage';
+    } else if (roll <= 7) {
+      return 'Guardian';
+    } else if (roll <= 15) {
+      return 'Paternal or maternal aunt, uncle, or both; or extended faamily such as tribe or clan';
+    } else if (roll <= 25) {
+      return 'Paternal or maternal grandparent(s)';
+    } else if (roll <= 35) {
+      return 'Adoptive family (same or different race)';
+    } else if (roll <= 55) {
+      return 'Single father or stepfather';
+    } else if (roll <= 75) {
+      return 'Single mother or stepmother';
+    } else {
+      return 'Mother and father';
+    }
+  }
+
+  getRandomAbsentParent(roll: number): string {
+    if (roll <= 1) {
+      return 'Your parent died. '; // TODO: Append random cause of death
+    }
+  }
+
   getRandomParentInfo(knowParents: boolean): string {
     if (knowParents) {
       return 'You know who your parents are or were.';
@@ -63,8 +110,7 @@ export class CharacterStoryService {
     }
   }
 
-  getRandomKnowParents(): boolean {
-    const roll: number = this.supplementalTableService.getRandomInt(1, 100);
+  getRandomKnowParents(roll: number): boolean {
     if (roll <= 95) {
       return true;
     } else {
@@ -99,36 +145,33 @@ export class CharacterStoryService {
 
   }
 
-  getRandomParents(race: string, knowParents: boolean): string {
+  getRandomParents(halfbreedRoll: number, race: string, knowParents: boolean): string {
     if (race === 'Half-Elf') {
-      const roll = this.supplementalTableService.roll(1, 8);
-      if (roll <= 5) {
+      if (halfbreedRoll <= 5) {
         return 'One parent was an elfand the other was a human.';
-      } else if (roll <= 6) {
+      } else if (halfbreedRoll <= 6) {
         return 'One parent was an elf and the other was a half-elf.';
-      } else if (roll <= 7) {
+      } else if (halfbreedRoll <= 7) {
         return 'One parent was a human and the other was a halfelf.';
       } else {
         return 'Both parents were half—elves.';
       }
     } else if (race === 'Half-Orc') {
-      const roll = this.supplementalTableService.roll(1, 8);
-      if (roll <= 5) {
+      if (halfbreedRoll <= 5) {
         return 'One parent was an orc and the other was a human.';
-      } else if (roll <= 6) {
+      } else if (halfbreedRoll <= 6) {
         return 'One parent was an ore and the other was a halforc.';
-      } else if (roll <= 7) {
+      } else if (halfbreedRoll <= 7) {
         return 'One parent was a human and the other was a halforc.';
       } else {
         return 'Both parents were half-orcs.';
       }
     } else if (race === 'Tiefling') {
-      const roll = this.supplementalTableService.roll(1, 8);
-      if (roll <= 5) {
+      if (halfbreedRoll <= 5) {
         return 'Both parents were humans, their infernal heritage dormant until you came along.';
-      } else if (roll <= 6) {
+      } else if (halfbreedRoll <= 6) {
         return 'One parent was a tiefling and the other was a human.';
-      } else if (roll <= 7) {
+      } else if (halfbreedRoll <= 7) {
         return 'One parent was a tiefling and the other was a devil.';
       } else {
         return 'One parent was a human and the other was a devil.';

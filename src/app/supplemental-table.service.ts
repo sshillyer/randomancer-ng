@@ -116,7 +116,7 @@ export class SupplementalTableService {
     getRandomStatus(): string {
       const roll = this.roll(3, 6);
       if (roll <= 3) {
-        return 'Dead (roll on the Cause of Death table)';
+        return 'Dead (roll on the Cause of Death table)'; // Todo: Append cause of death
       } else if (roll <= 5) {
         return 'Missing or unknown';
       } else if (roll <= 6) {
