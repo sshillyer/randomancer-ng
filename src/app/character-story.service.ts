@@ -1,3 +1,5 @@
+import { Background } from './background';
+import { BackgroundService } from './background.service';
 import { SupplementalTableService } from './supplemental-table.service';
 import { BirthplaceService } from './birthplace.service';
 import { SiblingService } from './sibling.service';
@@ -14,7 +16,8 @@ export class CharacterStoryService {
   constructor(
     private birthplaceService: BirthplaceService,
     private siblingService: SiblingService,
-    private supplementalTableService: SupplementalTableService
+    private supplementalTableService: SupplementalTableService,
+    private backgroundService: BackgroundService,
   ) { }
 
   getRandomCharacterStory(): CharacterStory {
@@ -42,8 +45,16 @@ export class CharacterStoryService {
     const childhoodHomeRoll = this.supplementalTableService.roll(1, 100);
     const childhoodHome = this.getChildhoodHome(childhoodHomeRoll, familyLifestyleRoll);
 
+    const childhoodMemoriesRoll = this.supplementalTableService.roll(3, 6);
+    const childhoodMemories = this.getChildhoodMemories(childhoodMemoriesRoll);
+
     const charClass = this.getRandomClass();
-    const background = this.getRandomBackground();
+
+    const backgroundRoll = this.supplementalTableService.getRandomInt(0, CHAR_BACKGROUNDS.length - 1);
+    const background = this.getRandomBackground(backgroundRoll);
+    const backgroundReasonRoll = this.supplementalTableService.roll(0, 5);
+    const backgroundReason = background.reasons[backgroundReasonRoll];
+
     const birthplace = this.getRandomBirthplace();
     const siblings = this.getRandomSiblings();
 
@@ -53,6 +64,7 @@ export class CharacterStoryService {
       race: race,
       class: charClass,
       background: background,
+      backgroundReason: backgroundReason,
       family: family,
       familyLifestyle: familyLifestyle,
       absentParent: absentParent,
@@ -61,6 +73,7 @@ export class CharacterStoryService {
       birthplace: birthplace,
       siblings: siblings,
       childhoodHome: childhoodHome,
+      childhoodMemories: childhoodMemories,
     };
   }
 
@@ -76,8 +89,26 @@ export class CharacterStoryService {
     return randClass.name + ` (${randSubclass})`;
   }
 
-  getRandomBackground(): string {
-    return CHAR_BACKGROUNDS[Math.floor(Math.random() * CHAR_BACKGROUNDS.length)];
+  getRandomBackground(roll: number): Background {
+    return this.backgroundService.getRandomBackground(roll);
+  }
+
+  getChildhoodMemories(roll): string {
+    if (roll <= 3) {
+      return 'I am still haunted by my childhood, when I was treated badly by my peers';
+    } else if (roll <= 5) {
+      return 'I spent most of my childhood alone, with no close friends.';
+    } else if (roll <= 8) {
+      return 'Others saw me as being different or strange, and so I had few companions.';
+    } else if (roll <= 12) {
+      return 'I had a few close friends and lived an ordinary childhood.';
+    } else if (roll <= 15) {
+      return 'I had several friends, and my childhood was generally a happy one.';
+    } else if (roll <= 17) {
+      return 'I always found it easy to make friends, and i loved being around people.';
+    } else {
+      return 'Everyone knew who I was, and I had friends everywhere I went.';
+    }
   }
 
   getRandomFamily(roll: number): string {
@@ -166,6 +197,12 @@ export class CharacterStoryService {
   getRandomAbsentParent(roll: number): string {
     if (roll <= 1) {
       return 'Your parent died. '; // TODO: Append random cause of death
+    } else if (roll <= 2) {
+      return 'Your parent was imprisoned, enslaved, or otherwise taken away.';
+    } else if (roll <= 3) {
+      return 'Your parent abandoned you.';
+    } else {
+      return 'Your parent disappeared to an unknown fate.';
     }
   }
 

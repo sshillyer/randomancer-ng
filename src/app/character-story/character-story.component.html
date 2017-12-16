@@ -15,7 +15,11 @@
         </tr>
         <tr>
           <td>Background</td>
-          <td>{{story.background}}</td>
+          <td>{{story.background.label}}</td>
+        </tr>
+        <tr>
+          <td>I became a {{story.background.label}} because...</td>
+          <td>{{story.backgroundReason}}</td>
         </tr>
         <tr>
           <td>Family</td>
@@ -30,14 +34,6 @@
           <td>{{story.absentParent}}</td>
         </tr>
         <tr>
-          <td>Family Lifestyle</td>
-          <td>{{story.familyLifestyle}}</td>
-        </tr>
-        <tr>
-          <td>Childhood Home</td>
-          <td>{{story.childhoodHome}}</td>
-        </tr>
-        <tr>
           <td>Birthplace</td>
           <td>{{story.birthplace}}</td>
         </tr>
@@ -46,6 +42,18 @@
           <td>Sibling {{i + 1}}</td>
           <td>{{sibling}}</td>
         </tr>
+        <tr>
+            <td>Family Lifestyle</td>
+            <td>{{story.familyLifestyle}}</td>
+          </tr>
+          <tr>
+            <td>Childhood Home</td>
+            <td>{{story.childhoodHome}}</td>
+          </tr>
+          <tr>
+            <td>Childhood Memories</td>
+            <td>{{story.childhoodMemories}}</td>
+          </tr>
       </table>
 </div>
 <div>

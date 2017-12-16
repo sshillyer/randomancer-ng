@@ -1,13 +1,17 @@
+import { Background } from '../background';
+
 export class CharacterStory {
-    race: string;
+    absentParent: string;
+    background: Background;
+    backgroundReason: string;
+    birthplace: string;
+    childhoodHome: string;
+    childhoodMemories: string;
     class: string;
-    background: string;
     family: string;
     familyLifestyle: string;
-    childhoodHome: string;
-    absentParent: string;
     knowParents: boolean;
     parentInfo: string;
-    birthplace: string;
+    race: string;
     siblings: string[];
 }
