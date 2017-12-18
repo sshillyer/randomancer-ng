@@ -24,10 +24,8 @@ export class CharacterStoryComponent implements OnInit {
 
   makeLifeHarder(): void {
     this.story.race = 'Half-Drow';
-    this.story.class = 'Fighter';
     this.story.parentInfo = 'Mother was raped by a drow';
     this.story.birthplace = 'Underdark';
-    this.story.background = 'Urchin';
   }
 
 }

@@ -48,7 +48,13 @@ export class CharacterStoryService {
     const childhoodMemoriesRoll = this.supplementalTableService.roll(3, 6);
     const childhoodMemories = this.getChildhoodMemories(childhoodMemoriesRoll);
 
-    const charClass = this.getRandomClass();
+    const charClassRoll = this.supplementalTableService.roll(0, CHAR_CLASSES.length - 1);
+    const charClass = this.getRandomClass(charClassRoll);
+    const subClassRoll = this.supplementalTableService.roll(0, charClass.subclasses.length - 1);
+    const charSubclass = this.getRandomSubclass(subClassRoll, charClass);
+    const classLabel = charClass.name + ` (${charSubclass})`;
+    const classReasonRoll = this.supplementalTableService.roll(0, charClass.reasons.length - 1);
+    const classReason = this.getRandomClassReason(classReasonRoll, charClass);
 
     const backgroundRoll = this.supplementalTableService.getRandomInt(0, CHAR_BACKGROUNDS.length - 1);
     const background = this.getRandomBackground(backgroundRoll);
@@ -62,7 +68,8 @@ export class CharacterStoryService {
 
     return {
       race: race,
-      class: charClass,
+      classLabel: classLabel,
+      classReason: classReason,
       background: background,
       backgroundReason: backgroundReason,
       family: family,
@@ -81,12 +88,19 @@ export class CharacterStoryService {
     return CHAR_RACES[roll];
   }
 
-  getRandomClass(): string {
-    const classRoll: number = this.supplementalTableService.getRandomInt(0, CHAR_CLASSES.length - 1);
-    const randClass = CHAR_CLASSES[classRoll];
-    const subclassRoll: number = this.supplementalTableService.getRandomInt(0, randClass.subclasses.length - 1);
-    const randSubclass = randClass.subclasses[subclassRoll];
-    return randClass.name + ` (${randSubclass})`;
+  getRandomClass(roll: number): CharacterClass {
+    return CHAR_CLASSES[roll];
+    // const subclassRoll: number = this.supplementalTableService.getRandomInt(0, randClass.subclasses.length - 1);
+    // const randSubclass = randClass.subclasses[subclassRoll];
+    // return randClass.name + ` (${randSubclass})`;
+  }
+
+  getRandomSubclass(roll: number, charClass: CharacterClass): string {
+    return charClass.subclasses[roll];
+  }
+
+  getRandomClassReason(roll: number, charClass: CharacterClass): string {
+    return charClass.reasons[roll];
   }
 
   getRandomBackground(roll: number): Background {
@@ -264,7 +278,7 @@ export class CharacterStoryService {
       if (halfbreedRoll <= 5) {
         return 'One parent was an orc and the other was a human.';
       } else if (halfbreedRoll <= 6) {
-        return 'One parent was an ore and the other was a halforc.';
+        return 'One parent was an orc and the other was a halforc.';
       } else if (halfbreedRoll <= 7) {
         return 'One parent was a human and the other was a halforc.';
       } else {

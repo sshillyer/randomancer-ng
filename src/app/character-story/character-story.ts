@@ -7,7 +7,8 @@ export class CharacterStory {
     birthplace: string;
     childhoodHome: string;
     childhoodMemories: string;
-    class: string;
+    classLabel: string;
+    classReason: string;
     family: string;
     familyLifestyle: string;
     knowParents: boolean;
