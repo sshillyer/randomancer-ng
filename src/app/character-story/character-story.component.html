@@ -26,6 +26,10 @@
           <td>{{story.backgroundReason}}</td>
         </tr>
         <tr>
+          <td>Current Age</td>
+          <td>{{story.currentAge}}</td>
+        </tr>
+        <tr>
           <td>Family</td>
           <td>{{story.family}}</td>
         </tr>
@@ -50,14 +54,19 @@
             <td>Family Lifestyle</td>
             <td>{{story.familyLifestyle}}</td>
           </tr>
-          <tr>
-            <td>Childhood Home</td>
-            <td>{{story.childhoodHome}}</td>
-          </tr>
-          <tr>
-            <td>Childhood Memories</td>
-            <td>{{story.childhoodMemories}}</td>
-          </tr>
+        <tr>
+          <td>Childhood Home</td>
+          <td>{{story.childhoodHome}}</td>
+        </tr>
+        <tr>
+          <td>Childhood Memories</td>
+          <td>{{story.childhoodMemories}}</td>
+        </tr>
+        <tr
+        *ngFor="let event of story.lifeEvents; let i = index" [attr.data-index]="i">
+          <td>Life Event {{i + 1}}</td>
+          <td>{{event}}</td>
+        </tr>
       </table>
 </div>
 <div>

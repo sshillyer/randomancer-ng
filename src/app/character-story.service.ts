@@ -1,3 +1,4 @@
+import { LifeEventService } from './life-event.service';
 import { Background } from './background';
 import { BackgroundService } from './background.service';
 import { SupplementalTableService } from './supplemental-table.service';
@@ -18,6 +19,7 @@ export class CharacterStoryService {
     private siblingService: SiblingService,
     private supplementalTableService: SupplementalTableService,
     private backgroundService: BackgroundService,
+    private lifeEventService: LifeEventService,
   ) { }
 
   getRandomCharacterStory(): CharacterStory {
@@ -48,9 +50,9 @@ export class CharacterStoryService {
     const childhoodMemoriesRoll = this.supplementalTableService.roll(3, 6);
     const childhoodMemories = this.getChildhoodMemories(childhoodMemoriesRoll);
 
-    const charClassRoll = this.supplementalTableService.roll(0, CHAR_CLASSES.length - 1);
+    const charClassRoll = this.supplementalTableService.getRandomInt(0, CHAR_CLASSES.length - 1);
     const charClass = this.getRandomClass(charClassRoll);
-    const subClassRoll = this.supplementalTableService.roll(0, charClass.subclasses.length - 1);
+    const subClassRoll = this.supplementalTableService.getRandomInt(0, charClass.subclasses.length - 1);
     const charSubclass = this.getRandomSubclass(subClassRoll, charClass);
     const classLabel = charClass.name + ` (${charSubclass})`;
     const classReasonRoll = this.supplementalTableService.roll(0, charClass.reasons.length - 1);
@@ -64,23 +66,29 @@ export class CharacterStoryService {
     const birthplace = this.getRandomBirthplace();
     const siblings = this.getRandomSiblings();
 
+    const lifeEventsRoll = this.supplementalTableService.roll(1, 100);
+    const currentAge = this.getCurrentAgeFromLifeEventsRoll(lifeEventsRoll);
+    const numLifeEvents = this.getNumberOfLifeEvents(lifeEventsRoll);
+    const lifeEvents: string[] = this.getRandomLifeEvents(numLifeEvents);
 
 
     return {
-      race: race,
-      classLabel: classLabel,
-      classReason: classReason,
+      absentParent: absentParent,
       background: background,
       backgroundReason: backgroundReason,
-      family: family,
-      familyLifestyle: familyLifestyle,
-      absentParent: absentParent,
-      knowParents: knowParents,
-      parentInfo: parentInfo,
       birthplace: birthplace,
-      siblings: siblings,
       childhoodHome: childhoodHome,
       childhoodMemories: childhoodMemories,
+      classLabel: classLabel,
+      classReason: classReason,
+      currentAge: currentAge,
+      family: family,
+      familyLifestyle: familyLifestyle,
+      knowParents: knowParents,
+      lifeEvents: lifeEvents,
+      parentInfo: parentInfo,
+      race: race,
+      siblings: siblings,
     };
   }
 
@@ -297,6 +305,18 @@ export class CharacterStoryService {
     } else {
       return this.getRandomParentInfo(knowParents);
     }
+  }
+
+  getCurrentAgeFromLifeEventsRoll(roll: number): string {
+    return this.lifeEventService.getCurrentAgeFromLifeEventsRoll(roll);
+  }
+
+  getNumberOfLifeEvents(roll: number): number {
+    return this.lifeEventService.getNumberOfLifeEvents(roll);
+  }
+
+  getRandomLifeEvents(numEvents: number): string[] {
+    return this.lifeEventService.getRandomLifeEvents(numEvents);
   }
 
 }

@@ -8,6 +8,7 @@ import { CharacterStoryComponent } from './character-story/character-story.compo
 import { CharacterStoryService } from './character-story.service';
 import { BackgroundService } from './background.service';
 import { BirthplaceService } from './birthplace.service';
+import { LifeEventService } from './life-event.service';
 import { SiblingService } from './sibling.service';
 import { SupplementalTableService } from './supplemental-table.service';
 import { AppRoutingModule } from './/app-routing.module';
@@ -26,7 +27,7 @@ import { AppRoutingModule } from './/app-routing.module';
     ]),
     AppRoutingModule
   ],
-  providers: [ CharacterStoryService, BackgroundService, BirthplaceService, SiblingService, SupplementalTableService ],
+  providers: [ CharacterStoryService, BackgroundService, BirthplaceService, LifeEventService, SiblingService, SupplementalTableService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
