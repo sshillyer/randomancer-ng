@@ -52,9 +52,9 @@ export class LifeEventService {
     if (roll <= 10) {
       return 'You suffered a tragedy. ' + this.getRandomTragedy();
     } else if (roll <= 20) {
-      return 'You gained a bit of good fortune. Roll on the Boons table.';
+      return 'You gained a bit of good fortune. ' + this.getRandomBoon();
     } else if (roll <= 30) {
-      return 'You fell in love or got married. lfyou get this result more than once, you can choose to have a child instead. Work with your DM to determine the identity of your love interest.';
+      return 'You fell in love or got married. If you get this result more than once, you can choose to have a child instead. Work with your DM to determine the identity of your love interest.';
     } else if (roll <= 40) {
       return 'You made an enemy of an adventurer. Roll a d6. An odd number indicates you are to blame for the rift, and an even number indicates you are blameless. Use the supplemental tables and work with your DM to determine this hostile character\'s identity and the danger this enemy poses to you.';
     } else if (roll <= 50) {
@@ -138,6 +138,32 @@ export class LifeEventService {
     }
   }
 
+  getRandomBoon(): string {
+    const roll = this.supplementalTableService.roll(1, 10);
+    if (roll <= 1) {
+      return 'A friendly wizard gave you a spell scroll containing one cantrip (of the DM\'s choice).';
+    } else if (roll <= 2) {
+      return 'You saved the life of a commoner, who now owes you a life debt. This individual accompanies you on your travels and performs mundane tasks for you, but will leave if neglected, abused, or imperiled. Determine details about this character by using the supplemental tables and working with your DM.';
+    } else if (roll <= 3) {
+      return 'You found a riding horse.';
+    } else if (roll <= 4) {
+      const gold = this.supplementalTableService.roll(1, 20);
+      return `You found some money. You have ${gold} gp in addition to your regular starting funds.`;
+    } else if (roll <= 5) {
+      return 'A relative bequeathed you a simple weapon of your choice.';
+    } else if (roll <= 6) {
+      return 'You found something interesting. You gain one additional trinket.';
+    } else if (roll <= 7) {
+      return 'You once performed a service for a local temple. The next time you visit the temple, you can receive healing up to your hit point maximum.';
+    } else if (roll <= 8) {
+      return 'A friendly alchemist gifted you with a potion of healing or a flask of acid, as you choose.';
+    } else if (roll <= 9) {
+      return 'You found a treasure map.';
+    } else {
+      const years = this.supplementalTableService.roll(1, 20);
+      return `A distant relative left you a stipend that enables you to live at the comfortable lifestyle for ${years} years. If you choose to live at a higher lifestyle, you reduce the price of the lifestyle by 2 gp during that time period.`;
+    }
+  }
 }
 
 
