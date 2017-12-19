@@ -116,7 +116,8 @@ export class SupplementalTableService {
     getRandomStatus(): string {
       const roll = this.roll(3, 6);
       if (roll <= 3) {
-        return 'Dead (roll on the Cause of Death table)'; // Todo: Append cause of death
+        const cause = this.getRandomCauseOfDeath();
+        return `Dead (${cause})`;
       } else if (roll <= 5) {
         return 'Missing or unknown';
       } else if (roll <= 6) {
@@ -151,6 +152,35 @@ export class SupplementalTableService {
         return 'Older than you';
       } else {
         return 'Younger than you';
+      }
+    }
+
+    getRandomCauseOfDeath(): string {
+      const roll = this.roll(1, 12);
+      if (roll <= 1) {
+        return 'Unknown';
+      } else if (roll <= 2) {
+        return 'Murdered';
+      } else if (roll <= 3) {
+        return 'Killed in battle';
+      } else if (roll <= 4) {
+        return 'Accident related to class or occupation';
+      } else if (roll <= 5) {
+        return 'Accident unrelated to class or occupation';
+      } else if (roll <= 6) {
+        return 'Natural causes, such as disease or old age';
+      } else if (roll <= 7) {
+        return 'Apparent suicide';
+      } else if (roll <= 8) {
+        return 'Torn apart by an animal or a natural disaster';
+      } else if (roll <= 9) {
+        return 'Consumed by a monster';
+      } else if (roll <= 10) {
+        return 'Executed for a crime or tortured to death';
+      } else if (roll <= 11) {
+        return 'Bizarre event, such as being hit by a meteorite';
+      } else {
+        return 'Struck down by an angry god, or killed by a hatching slaad egg';
       }
     }
 }
