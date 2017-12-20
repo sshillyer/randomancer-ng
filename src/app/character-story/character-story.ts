@@ -1,13 +1,15 @@
 import { Background } from '../background';
+import { CharacterClass } from '../data/character-class';
 
 export class CharacterStory {
     absentParent: string;
     background: Background;
     backgroundReason: string;
     birthplace: string;
+    charClass: CharacterClass;
+    charSubclass: string;
     childhoodHome: string;
     childhoodMemories: string;
-    classLabel: string;
     classReason: string;
     currentAge: string;
     family: string;

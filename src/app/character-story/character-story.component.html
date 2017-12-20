@@ -4,30 +4,30 @@
         <tr>
           <th><h1>Story Element</h1></th>
           <th><h1>Details</h1></th>
+          <th><h1>Re-Roll</h1></th>
         </tr>
         <tr>
           <td>Race</td>
           <td>{{story.race}}</td>
+          <td (click)="setRandomRace()">Reroll</td>
         </tr>
         <tr>
           <td>Class</td>
-          <td>{{story.classLabel}}</td>
+          <td>{{story.charClass.name}} {{story.charSubclass}}</td>
+          <td (click)="setRandomClass()">Reroll</td>
         </tr>
         <tr>
-          <td>I became a {{story.classLabel}} because...</td>
+          <td>I became a {{story.charClass.name}} because...</td>
           <td>{{story.classReason}}</td>
         </tr>
         <tr>
           <td>Background</td>
           <td>{{story.background.label}}</td>
+          <td (click)="setRandomBackground()">Reroll</td>
         </tr>
         <tr>
           <td>I became a {{story.background.label}} because...</td>
           <td>{{story.backgroundReason}}</td>
-        </tr>
-        <tr>
-          <td>Current Age</td>
-          <td>{{story.currentAge}}</td>
         </tr>
         <tr>
           <td>Family</td>
@@ -61,6 +61,11 @@
         <tr>
           <td>Childhood Memories</td>
           <td>{{story.childhoodMemories}}</td>
+        </tr>
+        <tr>
+          <td>Current Age</td>
+          <td>{{story.currentAge}}</td>
+          <td (click)="setRandomLifeEvents()">Reroll</td>
         </tr>
         <tr
         *ngFor="let event of story.lifeEvents; let i = index" [attr.data-index]="i">
