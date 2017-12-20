@@ -113,6 +113,31 @@ export class SupplementalTableService {
       }
     }
 
+    getRandomRace(): string {
+      const roll = this.roll(1, 100);
+      if (roll <= 40) {
+        return 'Human';
+      } else if (roll <= 50) {
+        return 'Dwarf';
+      } else if (roll <= 60) {
+        return 'Elf';
+      } else if (roll <= 70) {
+        return 'Halfling';
+      } else if (roll <= 75) {
+        return 'Dragonborn';
+      } else if (roll <= 80) {
+        return 'Gnome';
+      } else if (roll <= 85) {
+        return 'Half-elf';
+      } else if (roll <= 90) {
+        return 'Half-orc';
+      } else if (roll <= 95) {
+        return 'Tiefling';
+      } else {
+        return 'DM\s Choice';
+      }
+    }
+
     getRandomStatus(): string {
       const roll = this.roll(3, 6);
       if (roll <= 3) {
